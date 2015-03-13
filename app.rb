@@ -2,7 +2,7 @@ require 'sinatra'
 require 'json'
 require 'openssl'
 require 'base64'
-require 'active_support/core_ext'
+require 'active_support/core_ext/numeric/time'
 require 'sinatra/cross_origin'
 
 configure do

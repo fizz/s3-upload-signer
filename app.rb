@@ -3,6 +3,11 @@ require 'json'
 require 'openssl'
 require 'base64'
 require 'active_support/core_ext'
+require 'sinatra/cross_origin'
+
+configure do
+  enable :cross_origin
+end
 
 get '/sign' do
   @expires = 10.hours.from_now

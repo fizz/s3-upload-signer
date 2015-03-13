@@ -13,7 +13,7 @@ options '/sign' do
   200
 end
 get '/sign' do
-  @expires = 10.hours.from_now
+  @expires = 10.hours.from_now.utc
   @bucket = ENV['AWS_BUCKET']
   content_type :json
   {

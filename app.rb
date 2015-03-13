@@ -6,11 +6,12 @@ require 'active_support/core_ext'
 
 get '/sign' do
   @expires = 10.hours.from_now
+  @bucket = ENV['AWS_BUCKET']
   content_type :json
   {
     acl: 'public-read',
     awsaccesskeyid: ENV['AWS_ACCESS_KEY_ID'],
-    bucket: 'sandbox',
+    bucket: @bucket,
     expires: @expires,
     key: "uploads/#{params[:name]}",
     policy: policy,
@@ -36,7 +37,7 @@ def policy(options={})
     {
       expiration: @expires,
       conditions: [
-        { bucket: 'sandbox' },
+        { bucket:  @bucket },
         { acl: 'public-read' },
         { expires: @expires },
         { success_action_status: '201' },

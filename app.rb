@@ -9,6 +9,9 @@ configure do
   enable :cross_origin
 end
 
+options '/sign' do
+  200
+end
 get '/sign' do
   @expires = 10.hours.from_now
   @bucket = ENV['AWS_BUCKET']

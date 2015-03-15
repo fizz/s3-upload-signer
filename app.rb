@@ -12,6 +12,7 @@ end
 options '/sign' do
   200
 end
+
 get '/sign' do
   @expires = 10.hours.from_now.utc.iso8601
   @bucket = ENV['AWS_BUCKET']
@@ -21,7 +22,7 @@ get '/sign' do
     awsaccesskeyid: ENV['AWS_ACCESS_KEY_ID'],
     bucket: @bucket,
     expires: @expires,
-    key: "uploads/#{params[:name]}",
+    key: "#{params[:upload_path]}/#{params[:name]}",
     policy: policy,
     signature: signature,
     success_action_status: '201',
